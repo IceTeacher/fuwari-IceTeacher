@@ -1,9 +1,54 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 个人介绍
 
-::github{repo="saicaca/fuwari"}
+## 关于我
+大家好！我是宇文Teacher，一名刚刚毕业的前端工程师，对技术充满热情，致力于设计和开发用户友好的应用程序。我热爱编程，喜欢探索新技术，尤其是那些能够提升用户体验的前沿技术，理想是成为一名架构师。
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+## 个人总结
+- 熟悉HTML、CSS、JavaScript、ES6等前端基础，熟练使用TypeScript，有前端领域开发经验，能够独立完成基本的前端开发工作。 
+- 熟悉React框架的使用，有1年React框架开发经验，使用React完成过完整项目，有基于React Native的移动应用混合开发经验。 
+- 了解Vue框架以及Uni-app框架的基本使用。 
+- 掌握Webpack和Vite的基本配置和使用，有相关工具的配置经验。 
+- 掌握HTTP等计算机网络基础知识，对浏览器知识有一定的了解。 
+
+## 技能
+- **编程语言**：JavaScript、TypeScript、HTML、CSS
+- **框架与库**：React、Vue.js、Node.js
+- **工具**：Git、Webpack、Vite
+- **设计**：Figma、Adobe XD
+
+## 项目经验
+### 1.基于物品分类识别的小麦病虫害识别系统
+- **项目描述**：该项目由一个AI物品分类识别服务和微信小程序前端构成。AI服务采用PaddlePaddle构建的识别模型。
+- **技术栈**：微信小程序、微信小程序云开发、Python
+- **挑战与收获**：经过多次迭代优化，已实现小麦病虫害识别的准确率高达98%。微信小程序前端允许用户通过拍照来识别小麦病虫害，并提供相关信息与处理建议。 
+
+### 2.社区志愿者服务积分兑换系统
+- **项目描述**：该项目包括针对志愿者用户的微信小程序前端、针对商家用户的微信小程序前端，以及一个管理后台的前后端。志愿者用户前端提供活动列表浏览、积分商品兑换等功能；商家用户前端则支持商品核销和商家入驻操作。管理后台采用React、Nest.js和tRPC技术构建。
+- **技术栈**：微信小程序、微信小程序云开发、Python
+- **挑战与收获**：确保前后端的类型安全，并通过锁机制和事务处理确保积分兑换和商品核销过程的数据一致性和系统稳定性。
+
+### 3.番茄钟个人待办事项APP（计划开源）
+- **项目描述**：该个人待办事项APP采用React Native + 原生的混合开发实现，功能包括基于番茄工作法的任务专注计时器和待办提醒。
+- **技术栈**：React Native 
+- **挑战与收获**：使用Kotlin和Swift分别原生开发的Android和iOS系统小组件，以提高用户的便利性和效率。
+
+### 4.DrawingBook儿童绘图本 （已开源）
+- **项目描述**：为[DrawingBook](https://github.com/IceTeacher/DrawingBook)创建了一个展示网站，旨在学习鸿蒙APP的功能和特性。
+- **技术栈**：基于Harmonyos5.0，使用ArkTS、ArkUI开发，确保应用在不同设备上的响应式布局。
+- **挑战与收获**：通过项目实践，提升了对鸿蒙APP开发的理解，并积累了处理状态管理和页面组件问题的经验。
+::github{repo="IceTeacher/DrawingBook"}
+
+### 5.个人博客
+- **项目描述**：设计并开发了一个个人博客网站，用于分享技术文章和学习笔记。
+- **技术栈**：使用Astro构建，利用Markdown进行内容管理。
+
+## 兴趣爱好
+- **摄影**：热衷于捕捉生活中的美好瞬间，经常在[Unsplash](https://unsplash.com/)上分享作品。
+- **插画**：喜欢绘制数字插画，灵感来源于[星と少女](https://www.pixiv.net/artworks/108916539)等作品。
+- **阅读**：对科技和科幻文学情有独钟，喜欢探索未来科技的发展方向；对推理小说和严肃文学也有很深兴趣。
+
+## 联系方式
+- **邮箱**：[Ice.Teacher@Outlook.com](mailto:Ice.Teacher@Outlook.com)
+- **GitHub**：[github.com/IceTeacher](https://github.com/IceTeacher)
+
+感谢您的关注！期待与您在技术的世界里共同成长。
