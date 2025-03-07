@@ -1,0 +1,30 @@
+:root {
+  --tk-text: black;
+}
+
+html.dark {
+  --tk-text: #d1d5db;
+}
+
+.tk-comments {
+  @apply text-[var(--tk-text)];
+}
+
+/* Button */
+.tk-row.actions {
+  .__markdown {
+    @apply !hidden;
+  }
+  .tk-preview,
+  .tk-send,
+  .tk-cancel {
+    @apply border-none rounded-lg px-3 py-0 h-8
+     !bg-[var(--btn-regular-bg-active)] disabled:!bg-[var(--btn-regular-bg)]
+    !text-[var(--btn-content)] disabled:!text-[#ffffffa1];
+  }
+}
+
+/* footer */
+.tk-footer {
+  @apply !hidden;
+}

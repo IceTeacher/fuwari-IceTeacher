@@ -1,4 +1,5 @@
 import type {
+  CommentConfig,
   LicenseConfig,
   NavBarConfig,
   ProfileConfig,
@@ -58,8 +59,8 @@ export const profileConfig: ProfileConfig = {
     {
       name: 'QQ',
       icon: 'tdesign:logo-qq-filled',       // Visit https://icones.js.org/ for icon codes
-                                        // You will need to install the corresponding icon set if it's not already included
-                                        // `pnpm add @iconify-json/<icon-set-name>`
+      // You will need to install the corresponding icon set if it's not already included
+      // `pnpm add @iconify-json/<icon-set-name>`
       url: 'http://wpa.qq.com/msgrd?v=3&uin=897431372&site=qq&menu=yes',
     },
     {
@@ -74,4 +75,10 @@ export const licenseConfig: LicenseConfig = {
   enable: true,
   name: 'CC BY-NC-SA 4.0',
   url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+}
+
+export const commentConfig: CommentConfig = {
+  twikoo: {
+    envId: 'https://twikoo.rainafter.cn',
+  },
 }
