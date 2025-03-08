@@ -6,8 +6,8 @@
 友链互换留言评论格式如下
 ```
 title: '雨后初晴社',
-imgurl: 'http://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg',
-desc: '追求源于热爱，极致源于梦想。理想是成为一名架构师。',
+imgurl: 'https://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg',
+desc: '雨中，听雨声轻灵。雨后，赏水木清华。晓晴，愿晴空万里。聆听这广阔天地，感受那动人瞬间。',
 siteurl: 'https://www.rainafter.cn',
 
 ```
