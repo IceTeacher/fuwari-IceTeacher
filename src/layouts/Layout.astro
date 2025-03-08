@@ -343,8 +343,14 @@ function init() {
 	showBanner();
 }
 
+function initCommentComponent() {
+  const event = new Event("loadComment");
+  document.dispatchEvent(event);
+}
+
 /* Load settings when entering the site */
 init();
+initCommentComponent();
 
 const setup = () => {
 	// TODO: temp solution to change the height of the banner
@@ -376,7 +382,10 @@ const setup = () => {
 			navbar.classList.add('navbar-hidden')
 		}
 	})
-	window.swup.hooks.on('content:replace', initCustomScrollbar)
+	window.swup.hooks.on("content:replace", () => {
+		initCustomScrollbar();
+		initCommentComponent();
+	});
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')

@@ -12,8 +12,25 @@ const config = {
 }
 ---
 
-<div id="tcomment"></div>
+<!-- <div id="tcomment"></div>
 <script is:inline src="https://cdn.jsdelivr.net/gh/yoghurtlee-thu/customcdn@352853c/js/twikoo/1_6_39.min.js"></script>
 <script is:inline define:vars={{ config }}>
   twikoo.init(config)
+  document.addEventListener("loadComment", loadTwikoo, { once: true }); // 监听加载评论事件，但是我们只能监听一次，从而避免多次触发。
+</script> -->
+
+<div id="tcomment"></div>
+<script is:inline define:vars={{ config }}>
+  function loadTwikoo() {
+    const script = document.createElement("script");
+    script.src = "/js/twikoo/twikoo.all.min.js"; // 使用本地文件
+    script.defer = true;
+    script.onload = () => {
+      twikoo.init(config);
+    };
+    document.body.appendChild(script);
+  }
+  
+  // 页面切换时执行
+  document.addEventListener("loadComment", loadTwikoo, { once: true });
 </script>
