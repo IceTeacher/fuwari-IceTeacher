@@ -130,3 +130,11 @@ html.dark {
 .tk-collapse-wrap .tk-expand {
   @apply hover:rounded-lg mt-1 hover:bg-[var(--btn-plain-bg-hover)];
 }
+
+.el-loading-spinner {
+  @apply flex items-center justify-center;
+}
+
+.tk-footer {
+  @apply !hidden;
+}
