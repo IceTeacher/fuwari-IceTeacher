@@ -101,23 +101,14 @@ function loadButtonScript() {
             let menuPanel = document.getElementById("nav-menu-panel");
             if (menuPanel) {
                 menuPanel.classList.toggle("float-panel-closed");
+                const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
             }
         });
     }
 }
 
 loadButtonScript();
-
-// 获取汉堡菜单按钮和导航菜单元素
-const menuButton = document.querySelector('[data-menu-button]');
-const navMenu = document.querySelector('[data-nav-menu]');
-if (menuButton && navMenu) {
-    menuButton.addEventListener('click', () => {
-        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-        menuButton.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-        navMenu.classList.toggle('hidden');
-    });
-}
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
