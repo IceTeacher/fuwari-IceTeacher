@@ -19,13 +19,33 @@ export async function getStaticPaths() {
   const blogEntries = await getCollection('posts', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true
   })
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }))
+
+  // 按发布日期排序
+  const sortedEntries = blogEntries.sort(
+    (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+  )
+
+  return sortedEntries.map((entry, index) => {
+    // 获取前一篇和后一篇文章
+    const prevEntry = index > 0 ? sortedEntries[index - 1] : null
+    const nextEntry =
+      index < sortedEntries.length - 1 ? sortedEntries[index + 1] : null
+
+    return {
+      params: { slug: entry.slug },
+      props: {
+        entry,
+        prevSlug: prevEntry?.slug || '',
+        prevTitle: prevEntry?.data.title || '',
+        nextSlug: nextEntry?.slug || '',
+        nextTitle: nextEntry?.data.title || '',
+      },
+    }
+  })
 }
 
-const { entry } = Astro.props
+const { entry, prevSlug, prevTitle, nextSlug, nextTitle } = Astro.props
+console.log('entry', entry)
 const { Content, headings } = await entry.render()
 
 const { remarkPluginFrontmatter } = await entry.render()
@@ -117,23 +137,21 @@ const jsonLd = {
     </div>
 
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
-        <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
-           class:list={["w-full font-bold overflow-hidden active:scale-95 transition onload-animation", {"pointer-events-none opacity-50": !entry.data.nextSlug}]}>
-            {entry.data.nextSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4 transition hover:scale-[1.02]" >
-                <Icon name="material-symbols:chevron-left-rounded" class="text-[2rem] text-[var(--primary)]" />
+        <a href={getPostUrlBySlug(nextSlug)} class="w-full font-bold overflow-hidden active:scale-95">
+            {nextSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center justify-start gap-4" >
+                <Icon name="material-symbols:chevron-left-rounded" size={32} class="text-[var(--primary)]" />
                 <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-                    {entry.data.nextTitle}
+                    {nextTitle}
                 </div>
             </div>}
         </a>
 
-        <a href={entry.data.prevSlug ? getPostUrlBySlug(entry.data.prevSlug) : "#"}
-           class:list={["w-full font-bold overflow-hidden active:scale-95 transition onload-animation", {"pointer-events-none opacity-50": !entry.data.prevSlug}]}>
-            {entry.data.prevSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4 transition hover:scale-[1.02]">
+        <a href={getPostUrlBySlug(prevSlug)} class="w-full font-bold overflow-hidden active:scale-95">
+            {prevSlug && <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center justify-end gap-4">
                 <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-                    {entry.data.prevTitle}
+                    {prevTitle}
                 </div>
-                <Icon name="material-symbols:chevron-right-rounded" class="text-[2rem] text-[var(--primary)]" />
+                <Icon name="material-symbols:chevron-right-rounded" size={32} class="text-[var(--primary)]" />
             </div>}
         </a>
     </div>
