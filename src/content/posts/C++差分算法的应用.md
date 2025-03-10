@@ -2,7 +2,7 @@
 title: C++差分算法的应用
 published: 2022-01-20
 description: '在处理将一个数组中某个区间内的所有值均加上或减去一个常数时，为了进一步的简化程序计算量，我们可以考虑差分算法的应用。'
-image: 'https://cos.rainafter.cn/img/1.png'
+image: "https://cos.rainafter.cn/img/1.png"
 tags: ["基础算法"]
 category: "学习心得"
 

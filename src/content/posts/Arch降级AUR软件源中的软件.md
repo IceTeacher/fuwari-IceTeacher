@@ -1,13 +1,14 @@
 ---
 title: Arch降级AUR软件源中的软件
 published: 2025-03-07
-description: '最近Typora突然不能用了，提示我需要激活，后来看了Yporaject的说明才发现原来不支持1.10版本的Typora，遂准备开始降级。'
-image: 'https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2021/09/what-is-arch-linux.jpg'
-tags: ["Linux","Arch"]
-category: "Linux日常"
-
-draft: false 
-lang: 'ZH'
+description: 最近Typora突然不能用了，提示我需要激活，后来看了Yporaject的说明才发现原来不支持1.10版本的Typora，遂准备开始降级。
+image: https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2021/09/what-is-arch-linux.jpg
+tags:
+  - Linux
+  - Arch
+category: Linux日常
+draft: false
+lang: ZH
 ---
 
 
