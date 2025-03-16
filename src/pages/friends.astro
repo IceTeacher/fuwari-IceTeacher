@@ -12,26 +12,26 @@ const friendsPost = await getEntry('spec', 'friends')
 
 const { Content } = await friendsPost.render()
 const items = [
-  {  
-    title: 'Astro',  
-    imgurl: 'https://avatars.githubusercontent.com/u/44914786?s=48&v=4',  
-    desc: 'The web framework for content-driven websites. ⭐️ Star to support our work!',  
-    siteurl: 'https://github.com/withastro/astro',  
-    tags: ['框架'],  
-  },
-  {
-    title: '雨后初晴社',
-    imgurl: 'http://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg',
-    desc: '追求源于热爱，极致源于梦想。理想是成为一名架构师。',
-    siteurl: 'https://www.rainafter.cn',
-    tags: ['个人博客'],  
-  },
   {
     title: 'AULyPcのBlog',
     imgurl: 'https://blog.aulypc0x0.online/favicon/favicon_amiya.webp',
     desc: '今日も生きててえらい ☁',
     siteurl: 'https://blog.aulypc0x0.online',
     tags: ['个人博客'], 
+  },  
+  {
+    title: '伊卡的记事本',
+    imgurl: 'https://ikamusume7.org/avatar.webp',
+    desc: '又菜又爱学',
+    siteurl: 'https://ikamusume7.org',
+    tags: ['个人博客'],
+  },
+  {
+    title: '雨后初晴社',
+    imgurl: 'https://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg',
+    desc: '雨中，听雨声轻灵。雨后，赏水木清华。聆听这广阔天地，感受那动人瞬间。',
+    siteurl: 'https://www.rainafter.cn',
+    tags: ['个人博客'],
   }
 ]
 ---
@@ -75,6 +75,9 @@ const items = [
     </div>
 
     <div class="mt-6 card-base z-10 relative w-full">
-        <Comment post={Content}></Comment>
+        <Comment post={{
+            ...Content,
+            slug: "friends"
+        }} />
     </div>
 </MainGridLayout>

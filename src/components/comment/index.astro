@@ -3,12 +3,13 @@ import type { CollectionEntry } from 'astro:content'
 import { commentConfig } from '@/config'
 import Twikoo from './Twikoo.astro'
 interface Props {
-  post: CollectionEntry<'posts'>
+  post: CollectionEntry<'posts'>,
+  root?: string
 }
 
 const { id, data, slug } = Astro.props.post
 
-const path = `/posts/${slug}`
+const path = Astro.props.root ? `${Astro.props.root}/${slug}` : `/${slug}`
 const url = `${Astro.site?.href}${path}`
 
 let commentService = ''
