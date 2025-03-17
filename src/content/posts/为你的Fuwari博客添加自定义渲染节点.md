@@ -605,11 +605,3 @@ vite: {
 因此，我放弃了使用font-spider，转而使用 [**fontmin**](https://www.npmjs.com/package/fontmin) 包，这样我就可以将收集到的字体放在 **public** 目录下，从而避免了上述问题。
 
 当然，此处使用font-spider时也可能是我使用不当，如果大家有更好的方法，欢迎在评论区留言。
-
-## 六、参考文献
-- [fontmin](https://www.npmjs.com/package/fontmin)
-- [辰宇落雁體](https://github.com/Chenyu-otf/chenyuluoyan_thin)
-- [Astro](https://astro.build/)
-- [Vite](https://vitejs.dev/)
-- [rehype](https://rehype.js.org/)
-- [remark](https://remark.js.org/)
