@@ -96,6 +96,8 @@ class TableOfContents extends HTMLElement {
     toggleActiveHeading = () => {
         let i = this.active.length - 1;
         let min = this.active.length - 1, max = 0;
+        let hasActive = false;
+        
         while (i >= 0 && !this.active[i]) {
             this.tocEntries[i].classList.remove(this.visibleClass);
             i--;
@@ -104,17 +106,30 @@ class TableOfContents extends HTMLElement {
             this.tocEntries[i].classList.add(this.visibleClass);
             min = Math.min(min, i);
             max = Math.max(max, i);
+            hasActive = true;
             i--;
         }
         while (i >= 0) {
             this.tocEntries[i].classList.remove(this.visibleClass);
             i--;
         }
-        let parentOffset = this.tocEl?.getBoundingClientRect().top || 0;
-        let scrollOffset = this.tocEl?.scrollTop || 0;
-        let top = this.tocEntries[min].getBoundingClientRect().top - parentOffset + scrollOffset;
-        let bottom = this.tocEntries[max].getBoundingClientRect().bottom - parentOffset + scrollOffset;
-        this.activeIndicator?.setAttribute("style", `top: ${top}px; height: ${bottom - top}px`);
+        
+        // 如果没有活跃的标题，但我们已经滚动过了内容（可能在评论区），保持最后一个标题高亮
+        if (!hasActive && window.scrollY > 0 && this.tocEntries.length > 0) {
+            const lastIdx = this.tocEntries.length - 1;
+            this.tocEntries[lastIdx].classList.add(this.visibleClass);
+            min = lastIdx;
+            max = lastIdx;
+            hasActive = true;
+        }
+        
+        if (hasActive) {
+            let parentOffset = this.tocEl?.getBoundingClientRect().top || 0;
+            let scrollOffset = this.tocEl?.scrollTop || 0;
+            let top = this.tocEntries[min].getBoundingClientRect().top - parentOffset + scrollOffset;
+            let bottom = this.tocEntries[max].getBoundingClientRect().bottom - parentOffset + scrollOffset;
+            this.activeIndicator?.setAttribute("style", `top: ${top}px; height: ${bottom - top}px`);
+        }
     };
 
     scrollToActiveHeading = () => {
@@ -157,6 +172,7 @@ class TableOfContents extends HTMLElement {
     fallback = () => {
         if (!this.sections.length) return;
 
+        let foundVisible = false;
         for (let i = 0; i < this.sections.length; i++) {
             let offsetTop = this.sections[i].getBoundingClientRect().top;
             let offsetBottom = this.sections[i].getBoundingClientRect().bottom;
@@ -165,8 +181,22 @@ class TableOfContents extends HTMLElement {
                 || this.isInRange(offsetBottom, 0, window.innerHeight)
                 || (offsetTop < 0 && offsetBottom > window.innerHeight)) {                    
                 this.markActiveHeading(i);
+                foundVisible = true;
             }
             else if (offsetTop > window.innerHeight) break;
+        }
+        
+        // 如果没有找到可见的标题，检查我们是否已经滚动到了页面底部
+        if (!foundVisible && window.scrollY > 0) {
+            // 检查是否接近页面底部
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const distanceToBottom = documentHeight - scrollPosition;
+            
+            if (distanceToBottom < window.innerHeight * 0.5) {
+                // 如果接近页面底部，则设置最后一个标题为活跃
+                this.markActiveHeading(this.sections.length - 1);
+            }
         }
     };
 
