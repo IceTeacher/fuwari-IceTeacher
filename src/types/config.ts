@@ -35,10 +35,10 @@ export type Favicon = {
 };
 
 export enum LinkPreset {
-    Home = 0,
-    Archive = 1,
-    About = 2,
-    Friends = 3,
+	Home = 0,
+	Archive = 1,
+	About = 2,
+	Friends = 3,
 }
 
 export type NavBarLink = {
@@ -74,14 +74,14 @@ export type LIGHT_DARK_MODE =
 	| typeof AUTO_MODE;
 
 export type CommentConfig = {
-    twikoo?: TwikooConfig;
-}
+	twikoo?: TwikooConfig;
+};
 
 type TwikooConfig = {
-    envId: string;
-    region?: string;
-    lang?: string;
-}
+	envId: string;
+	region?: string;
+	lang?: string;
+};
 
 export type BlogPostData = {
 	body: string;

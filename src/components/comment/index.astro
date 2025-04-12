@@ -1,20 +1,20 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { commentConfig } from '@/config'
-import Twikoo from './Twikoo.astro'
+import type { CollectionEntry } from "astro:content";
+import { commentConfig } from "@/config";
+import Twikoo from "./Twikoo.astro";
 interface Props {
-  post: CollectionEntry<'posts'>,
-  root?: string
+	post: CollectionEntry<"posts">;
+	root?: string;
 }
 
-const { id, data, slug } = Astro.props.post
+const { id, data, slug } = Astro.props.post;
 
-const path = Astro.props.root ? `${Astro.props.root}/${slug}` : `/${slug}`
-const url = `${Astro.site?.href}${path}`
+const path = Astro.props.root ? `${Astro.props.root}/${slug}` : `/${slug}`;
+const url = `${Astro.site?.href}${path}`;
 
-let commentService = ''
+let commentService = "";
 if (commentConfig?.twikoo) {
-  commentService = 'twikoo'
+	commentService = "twikoo";
 }
 ---
 <div class="card-base p-6 mb-4">

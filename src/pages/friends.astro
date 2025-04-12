@@ -1,39 +1,39 @@
 ---
 
-import MainGridLayout from '../layouts/MainGridLayout.astro'
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 
-import { getEntry } from 'astro:content'
-import { i18n } from '../i18n/translation'
-import I18nKey from '../i18n/i18nKey'
-import Markdown from '@components/misc/Markdown.astro'
-import Comment from "@components/comment/index.astro"
+import { getEntry } from "astro:content";
+import Comment from "@components/comment/index.astro";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
 
-const friendsPost = await getEntry('spec', 'friends')
+const friendsPost = await getEntry("spec", "friends");
 
-const { Content } = await friendsPost.render()
+const { Content } = await friendsPost.render();
 const items = [
-  {
-    title: 'AULyPcのBlog',
-    imgurl: 'https://blog.aulypc0x0.online/favicon/favicon_amiya.webp',
-    desc: '今日も生きててえらい ☁',
-    siteurl: 'https://blog.aulypc0x0.online',
-    tags: ['个人博客'], 
-  },  
-  {
-    title: '伊卡的记事本',
-    imgurl: 'https://ikamusume7.org/avatar.webp',
-    desc: '又菜又爱学',
-    siteurl: 'https://ikamusume7.org',
-    tags: ['个人博客'],
-  },
-  {
-    title: '雨后初晴社',
-    imgurl: 'https://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg',
-    desc: '雨中，听雨声轻灵。雨后，赏水木清华。聆听这广阔天地，感受那动人瞬间。',
-    siteurl: 'https://www.rainafter.cn',
-    tags: ['个人博客'],
-  }
-]
+	{
+		title: "AULyPcのBlog",
+		imgurl: "https://blog.aulypc0x0.online/favicon/favicon_amiya.webp",
+		desc: "今日も生きててえらい ☁",
+		siteurl: "https://blog.aulypc0x0.online",
+		tags: ["个人博客"],
+	},
+	{
+		title: "伊卡的记事本",
+		imgurl: "https://ikamusume7.org/avatar.webp",
+		desc: "又菜又爱学",
+		siteurl: "https://ikamusume7.org",
+		tags: ["个人博客"],
+	},
+	{
+		title: "雨后初晴社",
+		imgurl: "https://image.rainafter.cn/i/2025/03/08/67cbf3ae27bed.jpg",
+		desc: "雨中，听雨声轻灵。雨后，赏水木清华。聆听这广阔天地，感受那动人瞬间。",
+		siteurl: "https://www.rainafter.cn",
+		tags: ["个人博客"],
+	},
+];
 ---
 <MainGridLayout title={i18n(I18nKey.friends)} description={i18n(I18nKey.friends)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
