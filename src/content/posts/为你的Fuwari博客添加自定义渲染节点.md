@@ -1,7 +1,7 @@
 ---
 title: 为你的 Fuwari 博客添加自定义渲染节点 —— 以自定义诗词卡片为例
 published: 2025-03-16
-description: '为你的Fuwari博客添加自定义渲染节点——以自定义诗词卡片为例'
+description: '带你一起活用Markdwon AST，为你的Fuwari博客添加一个渲染诗词卡片的自定义渲染节点'
 image: "https://image.rainafter.cn/i/2025/03/17/67d83b2697c22.jpg"
 tags: ["技术","前端"]
 category: "代码人生"
