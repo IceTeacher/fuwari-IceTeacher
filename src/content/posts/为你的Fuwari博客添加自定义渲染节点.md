@@ -66,7 +66,7 @@ lang: 'ZH'
 ### 2.1 新建诗词卡片节点
 1. 首先我们在 **/src/plugins** 目录下新建文件 **rehype-component-poem-card.mjs**
 2. 在 **rehype-component-poem-card.mjs** 文件内新增
-```js
+```js title="/src/plugins/rehype-component-poem-card.mjs"
 /// <reference types="mdast" />
 import { h } from "hastscript";
 
@@ -75,7 +75,7 @@ import { h } from "hastscript";
  * @param {import('mdast').Content} child 要处理的节点
  * @returns {import('mdast').Element[]} 处理后的元素数组
  */
-function processContentNode(child) {
+function processContentNode(child) {s
   if (child.type === "paragraph" || (child.type === "element" && child.tagName === "p")) {
     const text = extractTextContent(child).trim();
     return [createPoemParagraph(splitIntoLines(text))];
@@ -143,9 +143,9 @@ export function PoemCardComponent(properties, children) {
 注意：在 **/src/styles** 目录下的样式文件会自动引入Astro全局
 :::
 
-```css
+```css title="/src/styles/poem-card.css"
 @font-face {
-  /* 上文提到的开源字体： 辰宇落雁體，可自行前往Github仓库下载，并重命名放在项目根目录下的 /fonts 目录内*/
+  /* 上文提到的开源字体： 辰宇落雁體，可自行前往Github仓库下载，并重命名放在项目根目录下的 /public/fonts 目录内*/
   font-family: "ChenYuluoyan";
   src: url("/fonts/ChenYuluoyan.ttf") format("ttf");
   font-display: swap;
@@ -248,7 +248,7 @@ poem: PoemCardComponent,
 
 #### 示例
 1. 原始：
-```js
+```js title="/astro.config.mjs"
 [
     rehypeComponents,
     {
@@ -264,12 +264,13 @@ poem: PoemCardComponent,
 ],
 ```
 2. 修改后：
-```js
+```js title="/astro.config.mjs" ins={"在此处添加一行代码":6-7}
 [
     rehypeComponents,
     {
         components: {
         github: GithubCardComponent,
+            
         poem: PoemCardComponent,
         note: (x, y) => AdmonitionComponent(x, y, "note"),
         tip: (x, y) => AdmonitionComponent(x, y, "tip"),
@@ -313,7 +314,7 @@ poem: PoemCardComponent,
 pnpm i fontmin // 使用 npm、yarn、pnpm均可
 ```
 2. 在 **/src/plugins** 目录下新建文件 **vite-plugin-font-subset.mjs** 作为Astro的Vite收集诗词所用字符的插件
-```js
+```js title="/src/plugins/vite-plugin-font-subset.mjs"
 import path from 'path'
 import { fileURLToPath } from 'url'
 import Fontmin from 'fontmin'
@@ -391,7 +392,7 @@ export function createFontSubsetPlugin(charsSet, options = {}) {
 }
 ```
 3. 在 **/src/utils** 目录下新增文件 **char-collector.mjs**
-```js
+```js title="/src/utils/char-collector.mjs"
 /**
  * 字符收集器类
  */
@@ -444,7 +445,7 @@ export const poemCharCollector = new CharCollector()
 ```
 4. 修改 **/src/plugins** 目录下的文件 **rehype-component-poem-card.mjs**
 新增收集诗词所用字符的代码
-```js
+```js title="/src/plugins/rehype-component-poem-card.mjs" ins={3,6-26,34-35,71-73} del={1,10}
 /// <reference types="mdast" />
 import { h } from 'hastscript'
 import { poemCharCollector } from '../utils/char-collector.mjs'
