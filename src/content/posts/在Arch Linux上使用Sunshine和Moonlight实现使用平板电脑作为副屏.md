@@ -25,7 +25,7 @@ yay -S sunshine-beta-bin
 
 两者二选一即可，但是在安装后的实际体验来看，本人使用sunshine时出现了在Wayland下不能正常硬件编码的问题，经测试后sunshine-beta-bin正常。故最后选用了AUR软件源中的sunshine-beta-bin
 
-:::tip
+:::note
 就本文写作时间来看，sunshine的版本号是（2025.122.141614-7），sunshine-beta-bin的版本号是（2025.608.232654-1）
 :::
 
@@ -33,14 +33,18 @@ yay -S sunshine-beta-bin
 
 配置虚拟显示器的方式分为两类：一种是已有显卡欺骗器硬件的方式，另一种是通过创建虚拟显示器的方式。
 ### 2.1. 已有显卡欺骗器硬件的方式
-这种方式需要有显卡欺骗器硬件，可以直接插入电脑的HDMI接口，系统会自动识别为一个虚拟显示器。如果正好有显卡欺骗器的话，直接在电脑上插入显卡欺骗器即可解决问题，如果没有显卡欺骗器，请参考2.2部分来创建虚拟显示器。同时建议参考2.3部分修改EDID文件将显示器分辨率修改为平板电脑的原生分辨率。
+这种方式需要有显卡欺骗器硬件，可以直接插入电脑的HDMI接口，系统会自动识别为一个虚拟显示器。如果正好有显卡欺骗器的话，直接在电脑上插入显卡欺骗器即可解决问题，如果没有显卡欺骗器，请参考2.2部分来创建虚拟显示器。
+:::tip
+即使已有显卡欺骗器硬件，也依然建议参考2.3部分通过修改EDID文件将显示器分辨率修改为平板电脑的原生分辨率，可以极大的提升使用体验。
+:::
 ### 2.2. 创建虚拟显示器的方式
 在Wayland环境下，类似于使用`XrandR`工具等大多数创建虚拟显示器的方法均已经失效，经过反复尝试，最终找到了一种通过创建虚拟显示器的方式来实现的办法。
-这种方式使用了[`内核级显示模式`（KMS）](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E7%BA%A7%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE#)来创建虚拟显示器，并通过[`强制设置显示模式`](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E7%BA%A7%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE#%E5%BC%BA%E5%88%B6%E8%AE%BE%E7%BD%AE%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E_EDID)与`自定义EDID`的方式创建与平板电脑分辨率相同的虚拟显示器，其中的具体步骤如下：
+这种方式使用了[`内核级显示模式（KMS）`](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E7%BA%A7%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE#)来创建虚拟显示器，并通过[`强制设置显示模式`](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E7%BA%A7%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE#%E5%BC%BA%E5%88%B6%E8%AE%BE%E7%BD%AE%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E_EDID)与`自定义EDID`的方式创建与平板电脑分辨率相同的虚拟显示器，其中的具体步骤如下：
+
 #### 2.2.1. 创建虚拟显示器
 使用[`强制设置显示模式`](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E7%BA%A7%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE#%E5%BC%BA%E5%88%B6%E8%AE%BE%E7%BD%AE%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E_EDID)来创建虚拟显示器时需要修改Grub的内核参数，具体步骤如下：
 1. 打开GRUB配置文件
-```bash"
+```bash
 sudo vim /etc/default/grub
 ```
 2. 找到并在`GRUB_CMDLINE_LINUX_DEFAULT`一行中(一般在文件的靠前部分)添加参数
@@ -82,12 +86,15 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 在创建虚拟显示器之前，需要先创建一个EDID文件，其中EDID（Extended Display Identification Data）是显示器的识别数据，可以通过以下命令生成：
 
-1. 首先找到系统连接到的显示器
+1. 首先找到系统连接到的虚拟显示器
 ```bash
-# 找出您的显示器路径
+# 找出您的虚拟显示器路径
 find /sys/devices/ -name edid -type f
 ```
-2. 再将显示器的EDID数据复制到一个想要保存的目录中
+此处会列举出很多显示器，在这里可以根据显示器所连接到的显卡来判断哪一个是虚拟显示器。
+
+2. 再将虚拟显示器的EDID数据复制到一个想要保存的目录中
+
 ```bash
 # 复制 EDID 数据 (替换路径为上面找到的实际路径)
 sudo cp /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card1-HDMI-A-3/edid /xxxx想要保存到的路径xxxx/edid.bin
