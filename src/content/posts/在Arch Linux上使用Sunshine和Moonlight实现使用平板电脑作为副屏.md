@@ -74,17 +74,20 @@ GRUB_TIMEOUT_STYLE=menu
 # Uncomment to use basic console
 GRUB_TERMINAL_INPUT=console
 ```
-3. 保存并退出编辑器
-4. 更新Grub配置
+3. 保存并退出编辑器。
+4. 更新Grub配置。
 ```bash
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
-5. 重启系统后即可看到成功创建了一个虚拟显示器
+5. 重启系统后即可看到成功创建了一个虚拟显示器，此时我们已经可以通过iPad或其他Android Pad等平板电脑使用MoonLight串流到Arch Linux来将平板电脑作为一个副屏。
+![通过KMS的强制设置显示模式创建的虚拟显示器](https://cos.rainafter.cn/img/20250708232555345.jpg?imageSlim)
+> 通过KMS的强制设置显示模式创建的虚拟显示器
+6. 虚拟显示器成功创建后，默认的分辨率为电脑内置屏幕的标准分辨率，为了便于之后通过iPad或其他Android Pad等平板电脑使用MoonLight串流时能够将铺满整个平板电脑的屏幕，强烈建议通过接下来的创建并修改EDID文件的方式，将创建的虚拟显示器分辨率调整为平板电脑的原生分辨率来获得更优秀的使用体验。
 
 ### 2.3. 创建EDID文件
 #### 2.3.1 根据已有显示器导出EDID文件
 
-在创建虚拟显示器之前，需要先创建一个EDID文件，其中EDID（Extended Display Identification Data）是显示器的识别数据，可以通过以下命令生成：
+在创建虚拟显示器之前，需要先创建一个EDID文件，其中EDID（Extended Display Identification Data）是显示器的识别数据，可以通过以下命令来获取：
 
 1. 首先找到系统连接到的虚拟显示器
 ```bash
@@ -102,7 +105,7 @@ sudo cp /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card1-HDMI-A-3/edid /xxxx
 #### 2.3.2 自定义EDID文件
 
 1. 自定义EDID文件，将虚拟显示器分辨率修改为平板电脑的原生分辨率
-在这里推荐一个好用的EDID在线编辑网站[EDID解析与编辑工具](https://edid.wherelse.cc/)，我们在左侧上传刚才保存的EDID文件，点击解析后，在下面的水平和垂直分辨率部分修改为平板电脑的原生分辨率
+在这里推荐一个好用的EDID在线编辑网站[EDID解析与编辑工具(点击可查看)](https://edid.wherelse.cc/)，我们在网站左侧上传刚才保存的EDID文件，点击解析后，在网站下面的水平和垂直分辨率部分修改为平板电脑的原生分辨率
 ![自定义EDID文件](https://cos.rainafter.cn/img/20250617140623522.png?imageSlim)
 > 自定义EDID文件
 编辑完成后，点击底部的下载EDID文件，并保存到一个目录中
