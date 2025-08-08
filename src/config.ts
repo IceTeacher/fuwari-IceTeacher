@@ -11,7 +11,7 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: "雨后初晴社",
 	subtitle: "宇文Teacher的个人博客",
-	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
+    lang: "zh-CN", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
@@ -57,7 +57,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "宇文Teacher",
-	bio: "雨中，听雨声轻灵。雨后，赏水木清华。晓晴，愿晴空万里。聆听这广阔天地，感受那动人瞬间。",
+	bio: "雨中，听雨声轻灵。雨后，赏水木清华。聆听这广阔天地，感受那动人瞬间。",
 	links: [
 		{
 			name: "QQ",
