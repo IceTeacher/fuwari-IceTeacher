@@ -24,7 +24,7 @@ lang: ZH
 
 查了下关于Arch Linux降级软件包的方法，发现了一个叫Downgrade的工具，遂准备尝试一下。
 
-![Downgrade](https://cos.rainafter.cn/img/20250308201648474.jpg?imageSlim)
+![Downgrade](https://resource.rainafter.cn/img/20250308201648474.jpg?imageSlim)
 
 结果很不巧，AUR源只有当前最新版的Typeora安装包，而我的本地也没有老版本的缓存，只好想办法通过AUR源的Typora仓库直接手动构建一个低版本的安装包
 
@@ -67,4 +67,4 @@ lang: ZH
 
 最后也是终于看到了激活成功的动画。
 
-![成功](https://cos.rainafter.cn/img/20250308202153890.png?imageSlim)
+![成功](https://resource.rainafter.cn/img/20250308202153890.png?imageSlim)

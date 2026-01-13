@@ -2,7 +2,7 @@
 title: 在Arch Linux上使用Sunshine和Moonlight实现使用平板电脑作为副屏
 published: 2025-06-09
 description: '在Arch Linux的Wayland环境下创建虚拟显示器并自建EDID文件实现与平板屏幕分辨率对应，并配合Sunshine+Moonlight的方式实现使用平板作为副屏'
-image: "https://cos.rainafter.cn/img/20250609174956891.png?imageSlim"
+image: "https://resource.rainafter.cn/img/20250609174956891.png?imageSlim"
 tags: ["Linux","Arch"]
 category: "Linux日常"
 draft: false 
@@ -80,7 +80,7 @@ GRUB_TERMINAL_INPUT=console
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 5. 重启系统后即可看到成功创建了一个虚拟显示器，此时我们已经可以通过iPad或其他Android Pad等平板电脑使用MoonLight串流到Arch Linux来将平板电脑作为一个副屏。
-![通过KMS的强制设置显示模式创建的虚拟显示器](https://cos.rainafter.cn/img/20250708232555345.jpg?imageSlim)
+![通过KMS的强制设置显示模式创建的虚拟显示器](https://resource.rainafter.cn/img/20250708232555345.jpg?imageSlim)
 > 通过KMS的强制设置显示模式创建的虚拟显示器
 6. 虚拟显示器成功创建后，默认的分辨率为电脑内置屏幕的标准分辨率，为了便于之后通过iPad或其他Android Pad等平板电脑使用MoonLight串流时能够将铺满整个平板电脑的屏幕，强烈建议通过接下来的创建并修改EDID文件的方式，将创建的虚拟显示器分辨率调整为平板电脑的原生分辨率来获得更优秀的使用体验。
 
@@ -109,7 +109,7 @@ sudo cp /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card1-HDMI-A-3/edid /xxxx
 
 1. 自定义EDID文件，将虚拟显示器分辨率修改为平板电脑的原生分辨率
 在这里推荐一个好用的EDID在线编辑网站[EDID解析与编辑工具(点击可查看)](https://edid.wherelse.cc/)，我们在网站左侧上传刚才保存的EDID文件，点击解析后，在网站下面的水平和垂直分辨率部分修改为平板电脑的原生分辨率
-![自定义EDID文件](https://cos.rainafter.cn/img/20250617140623522.png?imageSlim)
+![自定义EDID文件](https://resource.rainafter.cn/img/20250617140623522.png?imageSlim)
 > 自定义EDID文件
 编辑完成后，点击底部的下载EDID文件，并保存到一个目录中
 2. 将刚才下载的自定义EDID文件复制到系统中
@@ -147,7 +147,7 @@ GRUB_TERMINAL_INPUT=console
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 5. 重启后，即可看到虚拟显示器的分辨率已经变为我们指定的平板的分辨率。
-![成功修改分辨率后的虚拟显示器](https://cos.rainafter.cn/img/20250617135314179.png?imageSlim)
+![成功修改分辨率后的虚拟显示器](https://resource.rainafter.cn/img/20250617135314179.png?imageSlim)
 > 成功修改分辨率后的虚拟显示器
 6. 将新添加的虚拟显示器作为Sunshine的默认捕捉显示器即可。
 

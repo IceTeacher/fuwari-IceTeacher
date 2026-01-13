@@ -2,7 +2,7 @@
 title: C++差分算法的应用
 published: 2022-01-20
 description: '在处理将一个数组中某个区间内的所有值均加上或减去一个常数时，为了进一步的简化程序计算量，我们可以考虑差分算法的应用。'
-image: "https://cos.rainafter.cn/img/1.png"
+image: "https://resource.rainafter.cn/img/1.png"
 tags: ["基础算法"]
 category: "学习心得"
 
@@ -77,7 +77,7 @@ b[n] = a[n] - a[n-1]
 
 使得，数组a变成 a[r + 1] - c,a[r + 2] - c……a[n]-c
 
-![b[l] + c的原因](https://cos.rainafter.cn/img/%E5%9B%BE%E7%A4%BA.png)
+![b[l] + c的原因](https://resource.rainafter.cn/img/%E5%9B%BE%E7%A4%BA.png)
 
 新引入的 b[l] + c 使得数组a中 a[l]及以后的数都加上了c(红色部分)，
 
@@ -123,7 +123,7 @@ for(int i=1;i<=n;i++)//根据数组b前缀和，还原源数组a
 
 ## 六、例题（摘选自AcWing 797）
 
-![AcWing 797](https://cos.rainafter.cn/img/AcWing.797-%E5%B7%AE%E5%88%86.png)
+![AcWing 797](https://resource.rainafter.cn/img/AcWing.797-%E5%B7%AE%E5%88%86.png)
 
 AC示例：
 

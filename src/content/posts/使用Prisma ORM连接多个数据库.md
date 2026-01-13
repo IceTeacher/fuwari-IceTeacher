@@ -2,7 +2,7 @@
 title: 使用Prisma ORM连接多个数据库的最佳实践
 published: 2025-08-25
 description: '最近遇到了需要使用Prisma ORM同时连接两个不同MySQL数据库进行数据读写的需求。然而，Prisma ORM默认只支持单数据库连接。经过深入研究和实践，我总结出了一套适用于此类需求的最佳实践方案。'
-image: "https://cos.rainafter.cn/img/20250905002439006.png?imageSlim"
+image: "https://resource.rainafter.cn/img/20250905002439006.png?imageSlim"
 tags: ["技术","前端","后端"]
 category: "代码人生"
 draft: false 
