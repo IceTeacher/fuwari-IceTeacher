@@ -1,7 +1,7 @@
 ---
 title: 在Arch Linux上使用Sunshine和Moonlight实现使用平板电脑作为副屏
 published: 2025-06-09
-description: '在Arch Linux的Wayland环境下创建虚拟显示器并自建EDID文件实现与平板屏幕分辨率对应，并配合Sunshine+Moonlight的方式实现使用平板作为副屏'
+description: '在Arch Linux的Wayland环境下创建虚拟显示器并自建EDID文件实现与平板屏幕分辨率对应，并配合Sunshine+Moonlight的方式实现使用平板作为副屏。'
 image: "https://resource.rainafter.cn/img/20250609174956891.png"
 tags: ["Linux","Arch"]
 category: "Linux日常"
