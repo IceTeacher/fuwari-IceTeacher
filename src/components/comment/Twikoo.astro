@@ -23,7 +23,7 @@ const config = {
 <script is:inline define:vars={{ config }}>
   function loadTwikoo() {
     const script = document.createElement("script");
-    script.src = "/js/twikoo/twikoo.all.min.js"; // 使用本地文件
+    script.src = "https://registry.npmmirror.com/twikoo/1.7.7/files/dist/twikoo.min.js";
     script.defer = true;
     script.onload = () => {
       twikoo.init(config);

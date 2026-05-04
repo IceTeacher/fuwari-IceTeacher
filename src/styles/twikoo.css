@@ -135,6 +135,6 @@ html.dark {
   @apply flex items-center justify-center;
 }
 
-.tk-footer {
+/* .tk-footer {
   @apply !hidden;
-}
+} */
