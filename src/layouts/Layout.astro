@@ -113,13 +113,17 @@ const bannerOffset =
 		))}
 
 		{import.meta.env.PROD && 
-		<script type="text/javascript">
-			(function(c,l,a,r,i,t,y){
-				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-				t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-				y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-			})(window, document, "clarity", "script", "qmvpct0ifo");
-		</script>
+			<script type="text/javascript">
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+					t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+					y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "qmvpct0ifo");
+			</script>
+		}
+
+		{import.meta.env.PROD && 
+			<script is:inline src="/stats/script.js" data-website-id="11b13a86-cf51-4a1c-b9bd-764e08fd73c9" data-performance="true"></script>
 		}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
