@@ -19,4 +19,9 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 		name: i18n(I18nKey.friends),
 		url: "/friends/",
 	},
+	[LinkPreset.Travellings]: {
+		name: i18n(I18nKey.travellings),
+		url: "https://www.travellings.cn/go.html",
+		external: true,
+	},
 };
