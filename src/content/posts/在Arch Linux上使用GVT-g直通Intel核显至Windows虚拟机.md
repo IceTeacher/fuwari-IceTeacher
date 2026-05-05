@@ -1,8 +1,8 @@
 ---
 title: 在Arch Linux上使用GVT-g直通Intel核显至Windows虚拟机
-published: 2026-05-02
-description: '在 Arch Linux 主机上用 QEMU/KVM将 Intel 集成显卡以 GVT-g vGPU 形式分配给虚拟机的完整过程。'
-image: "https://resource.rainafter.cn/img/20260504231950035.png"
+published: 2026-05-05
+description: '在 Arch Linux 主机上用 QEMU/KVM将 Intel 核显以 GVT-g vGPU 形式分配给虚拟机的完整过程。'
+image: "https://resource.rainafter.cn/img/20260505114828479.webp"
 tags: ["Linux","Arch"]
 category: "Linux日常"
 draft: false 
@@ -12,13 +12,12 @@ lang: 'ZH'
 # 在Arch Linux上使用GVT-g直通Intel核显至Windows虚拟机
 
 :::note
-本文记录在 Arch Linux 主机上用 QEMU/KVM 将 Intel 集成显卡以 GVT-g vGPU 形式分配给虚拟机的完整过程。写作时间为 2026-05，GVT-g 已经是维护状态很差的旧技术，但胜在操作简单、适合老平台折腾，作为在Arch Linux上Wine运行异常、或者必须使用Windows时的一种高性能且体验优秀的解决方案（GVT-g vGPU性能远超过其他虚拟机显卡），并不适合把它当作新硬件的长期方案。
+本文记录在 Arch Linux 主机上用 QEMU/KVM 将 Intel 核显以 GVT-g vGPU 形式分配给虚拟机的完整过程。写作时间为 2026-05，GVT-g 已经是维护状态很差的旧技术，但胜在操作简单、适合老平台折腾，作为在Arch Linux上Wine运行异常、或者必须使用Windows时的一种高性能且体验优秀的解决方案（GVT-g vGPU性能远超过其他虚拟机显卡），并不适合把它当作新硬件的长期方案。
 :::
 
 ## 先说结论和限制
 
-Intel GVT-g 是 Intel i915 驱动里的 vGPU/mdev 方案。它不是把整块核显独占直通给虚拟机，而是在宿主机继续使用核显的同时，把核显资源切成一个或多个 mediated
-device，再通过 VFIO 交给虚拟机。虚拟机里看到的是一块 Intel 显卡，可以安装 Intel 官方驱动，性能通常比 QXL、virtio-gpu 或纯软件渲染好得多。
+Intel GVT-g 是 Intel i915 驱动里的 vGPU/mdev 方案。它不是把整块核显独占直通给虚拟机，而是在宿主机继续使用核显的同时，把核显资源切成一个或多个 mediated device，再通过 VFIO 交给虚拟机。虚拟机里看到的是一块 Intel 显卡，可以安装 Intel 官方驱动，性能通常比 QXL、virtio-gpu 或纯软件渲染好得多。
 
 但是它有几个必须先接受的限制：
 
@@ -36,9 +35,6 @@ device，再通过 VFIO 交给虚拟机。虚拟机里看到的是一块 Intel �
 - `Intel Virtualization Technology` 或 `VT-x`：KVM 虚拟化 CPU 需要。
 - `Intel VT-d`：IOMMU/VFIO 需要，GVT-g 必须启用。
 - 核显保持启用：如果机器有独显，不要把 iGPU 完全禁用。
-- 可选：把 `DVMT Pre-Allocated`、`IGD Aperture Size`、`Graphics Memory` 一类选项调大。
-  如果后面 `mdev_supported_types` 目录存在但没有可用类型，或者创建 vGPU 报显存不足，
-  这类选项可能有帮助。
 
 进入系统后可以先做硬件检查：
 
@@ -47,13 +43,11 @@ lscpu | grep -E 'Virtualization|Model name'
 lspci -D -nn | grep -Ei 'vga|3d|display'
 ```
 
-典型核显行类似：
+输出结果应类似，保证核显型号在上述允许范围内：
 
 ```text
 0000:00:02.0 VGA compatible controller [0300]: Intel Corporation UHD Graphics 620 [8086:5917]
 ```
-
-本文后续所有 `0000:00:02.0` 都要按照际地址替换。
 
 ## 二、安装 QEMU/KVM、libvirt 和 virt-manager
 
@@ -366,6 +360,9 @@ sudo mdevctl undefine --uuid "$GVT_UUID"
 ![安装 virtio-win 驱动](https://resource.rainafter.cn/img/20260504203348236.webp)
 <div style="text-align: center; font-size: 0.9em; color: gray;">安装 virtio-win 驱动</div>
 
+![安装 Intel 核显驱动](https://resource.rainafter.cn/img/20260505114828478.webp)
+<div style="text-align: center; font-size: 0.9em; color: gray;">安装 Intel 核显驱动</div>
+
 安装 virtio-win 驱动后主机便可以与虚拟机共享剪贴板、传输文件、调整分辨率（但其驱动的 QXL 虚拟显卡性能远远不如接下来将要添加的 GVT-g vGPU）。
 
 ## 七、在 virt-manager 中添加 GVT-g vGPU
@@ -493,7 +490,7 @@ yay -S looking-glass
 ```
 
 安装完成后在 virt-manager 启动 Windows 虚拟机，再打开桌面环境中的 Looking Glass Client 即可看到虚拟机画面，并且在安装 Intel 驱动后，直通的显卡也正常使用，其性能远超过普通的虚拟机自带显卡，完全可以作为在Arch Linux上必须使用Windows时的解决方案。
-![Looking Glass Client 显示虚拟机画面](https://resource.rainafter.cn/img/20260504230356377.webp)
+![Looking Glass Client 显示虚拟机画面](https://resource.rainafter.cn/img/20260505114828476.webp)
 <div style="text-align: center; font-size: 0.9em; color: gray;">Looking Glass Client 显示虚拟机画面</div>
 
 ## 九、验证虚拟机的 GVT-g vGPU 是否正常工作
