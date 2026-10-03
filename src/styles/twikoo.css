@@ -14,7 +14,7 @@ html.dark {
 }
 
 /* Text Area */
-.tk-row {
+.twikoo .tk-row {
   .tk-col {
     @apply flex-col-reverse;
     .tk-input {
@@ -25,21 +25,21 @@ html.dark {
   }
 }
 
-.el-input {
+.twikoo .tk-meta-input .tk-input {
   @apply !rounded-lg;
 }
 
 .tk-meta-input {
   @apply min-h-10 relative mt-3;
-  .el-input-group__prepend {
-    @apply !bg-inherit;
+  .tk-input-group__prepend {
+    @apply !bg-inherit !rounded-l-lg;
   }
   div {
-    @apply py-1 rounded-l-lg;
+    @apply py-1 !rounded-l-lg;
     min-height: inherit;
   }
   input {
-    @apply px-4 rounded-r-lg focus:!border-[var(--primary)];
+    @apply !px-4 !rounded-r-lg focus:!border-[var(--primary)];
     min-height: inherit;
   }
 }
@@ -79,9 +79,10 @@ html.dark {
   }
 }
 
-.tk-meta {
+.twikoo .tk-meta {
   .tk-tag {
-    @apply border-none rounded-lg text-[var(--btn-content)];
+    @apply !inline-block border-none rounded-lg text-[var(--btn-content)];
+    display: inline-block !important;
   }
 
   .tk-tag-green {
@@ -131,7 +132,7 @@ html.dark {
   @apply hover:rounded-lg mt-1 hover:bg-[var(--btn-plain-bg-hover)];
 }
 
-.el-loading-spinner {
+.twikoo .tk-loading-spinner {
   @apply flex items-center justify-center;
 }
 
